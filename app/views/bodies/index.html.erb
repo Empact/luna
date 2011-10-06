@@ -1,0 +1,9 @@
+<div id="bodies"></div>
+
+<script type="text/javascript">
+  $(function() {
+    // Blog is the app name
+    window.router = new Luna.Routers.BodiesRouter({bodies: <%= @bodies.to_json.html_safe -%>});
+    Backbone.history.start();
+  });
+</script>
