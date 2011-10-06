@@ -20,6 +20,8 @@ gem 'jquery-rails'
 
 group :test, :development do
   gem 'thin'
+
+  gem 'rspec-rails'
 end
 
 # To use ActiveModel has_secure_password
