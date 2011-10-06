@@ -14,10 +14,12 @@
 ActiveRecord::Schema.define(:version => 20111006103856) do
 
   create_table "bodies", :force => true do |t|
-    t.string   "name"
+    t.string   "name",        :null => false
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "bodies", ["name"], :name => "index_bodies_on_name", :unique => true
 
 end
