@@ -1,4 +1,6 @@
 Luna::Application.routes.draw do
+  devise_for :users
+
   resources :bodies
 
   root to: 'bodies#index'
