@@ -3,7 +3,7 @@ Luna::Application.routes.draw do
 
   resources :bodies
 
-  root to: 'bodies#index'
+  root to: 'site#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
