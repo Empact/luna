@@ -1,4 +1,6 @@
 class BodiesController < ApplicationController
+  filter_resource_access
+
   # GET /bodies
   # GET /bodies.json
   def index
