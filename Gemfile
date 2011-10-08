@@ -6,6 +6,8 @@ gem 'rails', '3.1.1.rc3'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'foreigner'
+
 gem 'devise'
 
 # Gems used only for assets and not required

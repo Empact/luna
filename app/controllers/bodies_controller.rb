@@ -41,6 +41,7 @@ class BodiesController < ApplicationController
   # POST /bodies.json
   def create
     @body = Body.new(params[:body])
+    @body.created_by = current_user
 
     respond_to do |format|
       if @body.save
