@@ -65,6 +65,8 @@ GEM
     jquery-rails (1.0.14)
       railties (~> 3.0)
       thor (~> 0.14)
+    kaminari (0.12.4)
+      rails (>= 3.0.0)
     mail (2.3.0)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -155,6 +157,7 @@ DEPENDENCIES
   friendly_id (~> 4.0.0.beta14)
   haml-rails
   jquery-rails
+  kaminari
   pg
   rails (= 3.1.1.rc3)
   rails-backbone

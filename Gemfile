@@ -8,6 +8,7 @@ gem 'rails', '3.1.1.rc3'
 gem 'pg'
 gem 'foreigner'
 gem 'friendly_id', "~> 4.0.0.beta14"
+gem 'kaminari'
 
 gem 'devise'
 gem 'declarative_authorization'

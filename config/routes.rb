@@ -1,7 +1,9 @@
 Luna::Application.routes.draw do
   devise_for :users
 
-  resources :bodies
+  resources :bodies do
+    resources :memberships, controller: 'bodies/memberships'
+  end
 
   root to: 'site#index'
 

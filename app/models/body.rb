@@ -4,6 +4,9 @@ class Body < ActiveRecord::Base
 
   belongs_to :created_by, class_name: 'User'
 
+  has_many :memberships
+  has_many :members, through: :memberships
+
   validates_presence_of :created_by
 
   def managers

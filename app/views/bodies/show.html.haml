@@ -10,3 +10,15 @@
   = link_to 'Edit', edit_body_path(@body)
   |
 = link_to 'Back', bodies_path
+
+%h2 Members
+%ul
+  - @members.each do |member|
+    %li= render 'users/user', user: member
+
+= paginate @members
+
+- if permitted_to?(:edit, @body)
+  = link_to 'Add Members', new_body_membership_path(@body)
+  |
+  = link_to 'Manage Members', body_memberships_path(@body)
