@@ -1,0 +1,22 @@
+%h1 Listing bodies
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th
+    %th
+    %th
+
+  - @bodies.each do |body|
+    %tr
+      %td= body.name
+      %td= body.description
+
+      %td= link_to 'Show', body
+      %td= link_to 'Edit', edit_body_path(body)
+      %td= link_to 'Destroy', body, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Body', new_body_path
