@@ -15,6 +15,14 @@ class User < ActiveRecord::Base
 
   validates_presence_of :username
 
+  scope :exclude, lambda {|users|
+    if users.present?
+      where('id not in(?)', users)
+    else
+      scoped
+    end
+  }
+
   def role_symbols
     [:user]
   end

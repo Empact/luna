@@ -10,6 +10,9 @@ authorization do
     has_permission_on :bodies, to: [:update, :delete] do
       if_attribute :managers => contains {user}
     end
+    has_permission_on :bodies_memberships, to: [:read, :create, :update, :delete] do
+      if_permitted_to :update, :body
+    end
   end
 
   role :admin do

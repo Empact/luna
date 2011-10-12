@@ -1,0 +1,11 @@
+%h1
+  Members of
+  = link_to @body.name, @body
+
+%ul
+  - @memberships.each do |membership|
+    %li
+      = render 'users/user', user: membership.member
+      = link_to 'Delete', body_membership_path(@body, membership), method: :delete
+
+= paginate @memberships
