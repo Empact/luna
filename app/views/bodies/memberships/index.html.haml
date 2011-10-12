@@ -2,10 +2,22 @@
   Members of
   = link_to @body.name, @body
 
-%ul
-  - @memberships.each do |membership|
-    %li
-      = render 'users/user', user: membership.member
-      = link_to 'Delete', body_membership_path(@body, membership), method: :delete
+- if @memberships.present?
+  %ul
+    - @memberships.each do |membership|
+      %li
+        = render 'users/user', user: membership.member
+        = link_to 'Delete', body_membership_path(@body, membership), method: :delete
 
-= paginate @memberships
+  = paginate @memberships
+
+- else
+  %p There don't seem to be any members
+
+%h2
+  Add Members to
+  = link_to @body.name, @body
+
+= form_for [@body, @membership] do |f|
+  = f.collection_select :member_id, User.exclude(@body.members).all, :id, :username
+  = f.submit 'Add Member'

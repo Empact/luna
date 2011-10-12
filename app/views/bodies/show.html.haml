@@ -19,6 +19,4 @@
 = paginate @members
 
 - if permitted_to?(:edit, @body)
-  = link_to 'Add Members', new_body_membership_path(@body)
-  |
   = link_to 'Manage Members', body_memberships_path(@body)

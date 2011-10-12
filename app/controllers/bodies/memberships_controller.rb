@@ -1,7 +1,8 @@
 class Bodies::MembershipsController < ApplicationController
   filter_resource_access nested_in: :bodies
 
-  def new
+  def index
+    @memberships = @body.memberships.page(params[:page])
   end
 
   def create
@@ -9,12 +10,8 @@ class Bodies::MembershipsController < ApplicationController
     if @membership.save
       redirect_to body_memberships_path(@body)
     else
-      render :new
+      render :index
     end
-  end
-
-  def index
-    @memberships = @body.memberships.page(params[:page])
   end
 
   def destroy

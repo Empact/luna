@@ -1,7 +1,0 @@
-%h1
-  Add Members to
-  = @body.name
-
-= form_for [@body, @membership] do |f|
-  = f.collection_select :member_id, User.exclude(@body.members).all, :id, :username
-  = f.submit 'Add User'
