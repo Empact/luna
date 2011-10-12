@@ -13,6 +13,7 @@
   <%= render 'users/user', user: @body.created_by %>
 </p>
 
-
-<%= link_to 'Edit', edit_body_path(@body) %> |
+<% if permitted_to?(:edit, @body) %>
+  <%= link_to 'Edit', edit_body_path(@body) %> |
+<% end %>
 <%= link_to 'Back', bodies_path %>
