@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111008220722) do
+ActiveRecord::Schema.define(:version => 20111012072856) do
 
   create_table "bodies", :force => true do |t|
     t.string   "name",          :null => false
@@ -36,10 +36,12 @@ ActiveRecord::Schema.define(:version => 20111008220722) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username",                                              :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   add_foreign_key "bodies", "users", :name => "bodies_created_by_id_fk", :column => "created_by_id"
 
