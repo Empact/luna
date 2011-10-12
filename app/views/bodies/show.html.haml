@@ -1,0 +1,16 @@
+%p
+  %b Name:
+  = @body.name
+
+%p
+  %b Description:
+  = @body.description
+
+%p
+  %b Creator:
+  = render 'users/user', user: @body.created_by
+
+- if permitted_to?(:edit, @body)
+  = link_to 'Edit', edit_body_path(@body)
+  |
+= link_to 'Back', bodies_path
