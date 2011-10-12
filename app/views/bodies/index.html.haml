@@ -4,7 +4,7 @@
   %tr
     %th Name
     %th Description
-    %th
+    %th Creator
     %th
     %th
 
@@ -12,6 +12,7 @@
     %tr
       %td= body.name
       %td= body.description
+      %td= render 'users/user', user: body.created_by
 
       %td= link_to 'Show', body
       %td= link_to 'Edit', edit_body_path(body)

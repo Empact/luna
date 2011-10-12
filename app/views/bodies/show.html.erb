@@ -10,6 +10,11 @@
   <%= @body.description %>
 </p>
 
+<p>
+  <b>Creator:</b>
+  <%= render 'users/user', user: @body.created_by %>
+</p>
+
 
 <%= link_to 'Edit', edit_body_path(@body) %> |
 <%= link_to 'Back', bodies_path %>
