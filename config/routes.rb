@@ -4,6 +4,7 @@ Luna::Application.routes.draw do
   resources :bodies do
     resources :memberships, only: [:index, :create, :destroy], controller: 'bodies/memberships'
   end
+  resources :users, only: :show
 
   root to: 'site#index'
 

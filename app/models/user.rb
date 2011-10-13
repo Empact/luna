@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :memberships, foreign_key: :member_id
   has_many :bodies, through: :memberships
 
+  has_many :created_bodies, class_name: 'Body', foreign_key: 'created_by_id'
+
   validates_presence_of :username
 
   scope :random, order('random()')

@@ -1,6 +1,6 @@
 authorization do
   role :guest do
-    has_permission_on :bodies, to: :read
+    has_permission_on :bodies, :users, to: :read
   end
 
   role :user do

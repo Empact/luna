@@ -1,2 +1,2 @@
 = content_tag_for(:span, user) do
-  = user.username
+  = link_to_unless_current user.username, user
