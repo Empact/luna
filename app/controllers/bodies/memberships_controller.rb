@@ -3,6 +3,7 @@ class Bodies::MembershipsController < ApplicationController
 
   def index
     @memberships = @body.memberships.page(params[:page])
+    @prospective_members = User.exclude(@body.members)
   end
 
   def create

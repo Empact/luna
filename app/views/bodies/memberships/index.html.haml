@@ -18,6 +18,9 @@
   Add Members to
   = link_to @body.name, @body
 
-= form_for [@body, @membership] do |f|
-  = f.collection_select :member_id, User.exclude(@body.members).all, :id, :username
-  = f.submit 'Add Member'
+- if @prospective_members.present?
+  = form_for [@body, @membership] do |f|
+    = f.collection_select :member_id, @prospective_members, :id, :username
+    = f.submit 'Add Member'
+- else
+  %p No prospective members available
