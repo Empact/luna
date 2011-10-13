@@ -12,11 +12,14 @@
 = link_to 'Back', bodies_path
 
 %h2 Members
-%ul
-  - @members.each do |member|
-    %li= render 'users/user', user: member
+- if @members.present?
+  %ul
+    - @members.each do |member|
+      %li= render 'users/user', user: member
 
-= paginate @members
+  = paginate @members
+- else
+  %p None
 
 - if permitted_to?(:edit, @body)
   = link_to 'Manage Members', body_memberships_path(@body)
