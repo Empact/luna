@@ -7,7 +7,7 @@
     - @memberships.each do |membership|
       %li
         = render 'users/user', user: membership.member
-        = link_to 'Delete', body_membership_path(@body, membership), method: :delete
+        = link_to 'Remove', body_membership_path(@body, membership), method: :delete
 
   = paginate @memberships
 
