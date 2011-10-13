@@ -1,6 +1,3 @@
-<h1>Editing body</h1>
+<h1>Editing <%= link_to @body.name, @body %></h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @body %> |
-<%= link_to 'Back', bodies_path %>

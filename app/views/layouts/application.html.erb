@@ -12,6 +12,10 @@
   <h1><%= link_to 'Luna', root_path %></h1>
 
   <nav>
+    <%= link_to 'Our Deliberative Bodies', bodies_path %>
+  </nav>
+
+  <nav>
     <% if user_signed_in? %>
       Welcome, <%= current_user.username %>
       <%= link_to_unless_current 'Settings', edit_user_registration_path %>
