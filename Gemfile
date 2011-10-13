@@ -27,6 +27,8 @@ gem 'jquery-rails'
 group :test, :development do
   gem 'thin'
 
+  gem 'faker'
+
   gem 'rspec-rails'
 end
 
