@@ -10,11 +10,10 @@
 
   - @bodies.each do |body|
     %tr
-      %td= body.name
+      %td= link_to body.name, body
       %td= body.description
       %td= render 'users/user', user: body.created_by
 
-      %td= link_to 'Show', body
       %td= link_to 'Edit', edit_body_path(body) if permitted_to?(:edit, body)
       %td= link_to 'Destroy', body, :confirm => 'Are you sure?', :method => :delete if permitted_to?(:destroy, body)
 
