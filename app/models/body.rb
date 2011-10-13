@@ -9,6 +9,8 @@ class Body < ActiveRecord::Base
 
   validates_presence_of :created_by
 
+  scope :random, order('random()')
+
   def managers
     [created_by]
   end

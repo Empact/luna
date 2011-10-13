@@ -11,5 +11,11 @@
 end
 
 30.times do
-  Body.create!(name: Faker::Company.name, description: Faker::Lorem.paragraph, created_by: User.order('random()').first)
+  Body.create!(name: Faker::Company.name, description: Faker::Lorem.paragraph, created_by: User.random.first)
+end
+
+User.find_each do |user|
+  Body.random.limit(rand(6)).each do |body|
+    user.memberships.create!(body: body, created_by: User.random.first)
+  end
 end

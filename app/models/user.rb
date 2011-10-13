@@ -10,11 +10,12 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username
 
-  has_many :memberships
+  has_many :memberships, foreign_key: :member_id
   has_many :bodies, through: :memberships
 
   validates_presence_of :username
 
+  scope :random, order('random()')
   scope :exclude, lambda {|users|
     if users.present?
       where('id not in(?)', users)
