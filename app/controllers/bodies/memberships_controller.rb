@@ -9,14 +9,15 @@ class Bodies::MembershipsController < ApplicationController
   def create
     @membership.created_by = current_user
     if @membership.save
-      redirect_to body_memberships_path(@body)
+      flash.notice = "Successfully joined body"
     else
-      render :index
+      flash.alert = "Failed to join body"
     end
+    redirect_to :back
   end
 
   def destroy
     @membership.destroy
-    redirect_to body_memberships_path(@body)
+    redirect_to :back
   end
 end

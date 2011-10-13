@@ -19,5 +19,11 @@
 - else
   %p None
 
+- if user_signed_in?
+  - if membership = @body.memberships.for(current_user)
+    = button_to 'Leave Body', body_membership_path(@body, membership), method: :delete
+  - elsif permitted_to?(:edit, @body)
+    = button_to 'Join Body', body_memberships_path(@body, membership: {member_id: current_user.id})
+
 - if permitted_to?(:edit, @body)
   = link_to 'Manage Members', body_memberships_path(@body)
