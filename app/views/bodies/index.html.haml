@@ -18,6 +18,8 @@
       %td= link_to 'Edit', edit_body_path(body) if permitted_to?(:edit, body)
       %td= link_to 'Destroy', body, :confirm => 'Are you sure?', :method => :delete if permitted_to?(:destroy, body)
 
+= paginate @bodies
+
 %br
 
 = link_to 'New Body', new_body_path
