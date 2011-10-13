@@ -11,6 +11,13 @@ class Body < ActiveRecord::Base
   end
   has_many :members, through: :memberships
 
+  has_many :membership_requests do
+    def for(user)
+      where(member_id: user).first
+    end
+  end
+  has_many :users_requesting_membership, through: :membership_requests, source: :member
+
   validates_presence_of :created_by
 
   scope :random, order('random()')

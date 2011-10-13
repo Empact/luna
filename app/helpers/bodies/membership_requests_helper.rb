@@ -1,0 +1,2 @@
+module Bodies::MembershipRequestsHelper
+end

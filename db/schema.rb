@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111012103144) do
+ActiveRecord::Schema.define(:version => 20111013034610) do
 
   create_table "bodies", :force => true do |t|
     t.string   "name",          :null => false
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(:version => 20111012103144) do
 
   add_index "bodies", ["name"], :name => "index_bodies_on_name", :unique => true
   add_index "bodies", ["slug"], :name => "index_bodies_on_slug", :unique => true
+
+  create_table "membership_requests", :force => true do |t|
+    t.integer  "member_id",  :null => false
+    t.integer  "body_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "membership_requests", ["member_id", "body_id"], :name => "index_membership_requests_on_member_id_and_body_id", :unique => true
 
   create_table "memberships", :force => true do |t|
     t.integer  "member_id",     :null => false
@@ -58,6 +67,9 @@ ActiveRecord::Schema.define(:version => 20111012103144) do
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   add_foreign_key "bodies", "users", :name => "bodies_created_by_id_fk", :column => "created_by_id"
+
+  add_foreign_key "membership_requests", "bodies", :name => "membership_requests_body_id_fk"
+  add_foreign_key "membership_requests", "users", :name => "membership_requests_member_id_fk", :column => "member_id"
 
   add_foreign_key "memberships", "bodies", :name => "memberships_body_id_fk"
   add_foreign_key "memberships", "users", :name => "memberships_created_by_id_fk", :column => "created_by_id"

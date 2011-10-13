@@ -6,7 +6,7 @@ authorization do
   role :user do
     includes :guest
 
-    has_permission_on :bodies, to: :create
+    has_permission_on :bodies, :bodies_membership_requests, to: :create
     has_permission_on :bodies, to: [:update, :delete] do
       if_attribute :managers => contains {user}
     end

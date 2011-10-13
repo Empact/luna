@@ -19,11 +19,16 @@
 - else
   %p None
 
-- if user_signed_in?
-  - if membership = @body.memberships.for(current_user)
-    = button_to 'Leave Body', body_membership_path(@body, membership), method: :delete
-  - elsif permitted_to?(:edit, @body)
-    = button_to 'Join Body', body_memberships_path(@body, membership: {member_id: current_user.id})
+- if user_signed_in? && membership = @body.memberships.for(current_user)
+  = button_to 'Leave Body', body_membership_path(@body, membership), method: :delete
+- elsif permitted_to?(:edit, @body)
+  = button_to 'Join Body', body_memberships_path(@body, membership: {member_id: current_user.id})
+- elsif @body.membership_requests.for(current_user)
+  %p
+    Membership requested at
+    = current_user.created_at
+- else
+  = button_to 'Request Membership', body_membership_requests_path(@body, membership_request: {member_id: current_user.id})
 
 - if permitted_to?(:edit, @body)
   = link_to 'Manage Members', body_memberships_path(@body)
