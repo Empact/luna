@@ -10,7 +10,7 @@
   color: white;
   background-color: #002634;
   border-bottom: 3px solid #33B784;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 36px;
   height: 36px;
 
@@ -32,6 +32,9 @@
   }
 
   li {
-    display: inline;
+    display: inline-block;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-left: 1px solid #4D5B6F;
   }
 }
