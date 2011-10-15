@@ -32,3 +32,17 @@
 
 - if permitted_to?(:edit, @body)
   = link_to 'Manage Members', body_memberships_path(@body)
+
+%h2 Questions
+- if @questions.present?
+  %ol
+    - @questions.each do |question|
+      %li= render 'questions/question', question: question
+
+  = paginate @questions
+
+- else
+  %p None
+
+- if permitted_to?(:create, @body.questions.build)
+  = link_to 'Raise a question', new_body_question_path(@body)

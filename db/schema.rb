@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111013034610) do
+ActiveRecord::Schema.define(:version => 20111015213021) do
+
+  create_table "answers", :force => true do |t|
+    t.integer  "question_id",   :null => false
+    t.integer  "created_by_id", :null => false
+    t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "bodies", :force => true do |t|
     t.string   "name",          :null => false
@@ -44,6 +52,14 @@ ActiveRecord::Schema.define(:version => 20111013034610) do
 
   add_index "memberships", ["member_id", "body_id"], :name => "index_memberships_on_member_id_and_body_id", :unique => true
 
+  create_table "questions", :force => true do |t|
+    t.integer  "body_id",       :null => false
+    t.integer  "created_by_id", :null => false
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -66,6 +82,9 @@ ActiveRecord::Schema.define(:version => 20111013034610) do
   add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
+  add_foreign_key "answers", "questions", :name => "answers_question_id_fk"
+  add_foreign_key "answers", "users", :name => "answers_created_by_id_fk", :column => "created_by_id"
+
   add_foreign_key "bodies", "users", :name => "bodies_created_by_id_fk", :column => "created_by_id"
 
   add_foreign_key "membership_requests", "bodies", :name => "membership_requests_body_id_fk"
@@ -74,5 +93,8 @@ ActiveRecord::Schema.define(:version => 20111013034610) do
   add_foreign_key "memberships", "bodies", :name => "memberships_body_id_fk"
   add_foreign_key "memberships", "users", :name => "memberships_created_by_id_fk", :column => "created_by_id"
   add_foreign_key "memberships", "users", :name => "memberships_member_id_fk", :column => "member_id"
+
+  add_foreign_key "questions", "bodies", :name => "questions_body_id_fk"
+  add_foreign_key "questions", "users", :name => "questions_created_by_id_fk", :column => "created_by_id"
 
 end

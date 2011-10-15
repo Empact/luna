@@ -17,7 +17,6 @@ class BodiesController < ApplicationController
   def show
     @body = Body.find(params[:id])
     @members = @body.members.page(params[:page])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @body }

@@ -18,6 +18,8 @@ class Body < ActiveRecord::Base
   end
   has_many :users_requesting_membership, through: :membership_requests, source: :member
 
+  has_many :questions
+
   validates_presence_of :created_by
 
   scope :random, order('random()')

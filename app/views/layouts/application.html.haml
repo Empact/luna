@@ -20,12 +20,12 @@
           %ol.right
             %li= link_to 'Our Deliberative Bodies', bodies_path
             - if user_signed_in?
-              %li= current_user.username
-              %li= link_to_unless_current 'Settings', edit_user_registration_path
+              %li= link_to current_user.username, current_user
+              %li= link_to 'Settings', edit_user_registration_path
               %li= link_to 'Sign Out', destroy_user_session_path, method: :delete
             - else
-              %li= link_to_unless_current 'Sign In', new_user_session_path
-              %li= link_to_unless_current 'Sign Up', new_user_registration_path
+              %li= link_to 'Sign In', new_user_session_path
+              %li= link_to 'Sign Up', new_user_registration_path
 
     .container
       %p#notice= notice
