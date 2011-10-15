@@ -28,7 +28,7 @@
     Membership requested at
     = current_user.created_at
 - else
-  = button_to 'Request Membership', body_membership_requests_path(@body, membership_request: {member_id: current_user.id})
+  = button_to 'Request Membership', body_membership_requests_path(@body)
 
 - if permitted_to?(:edit, @body)
   = link_to 'Manage Members', body_memberships_path(@body)
