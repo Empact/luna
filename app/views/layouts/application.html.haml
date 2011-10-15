@@ -18,7 +18,7 @@
           #logo.left= link_to 'Luna', root_path
 
           %ol.right
-            %li= link_to 'Our Deliberative Bodies', bodies_path
+            %li= link_to 'Groups', groups_path
             - if user_signed_in?
               %li= link_to current_user.username, current_user
               %li= link_to 'Settings', edit_user_registration_path

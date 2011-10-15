@@ -1,0 +1,2 @@
+module Groups::MembershipRequestsHelper
+end

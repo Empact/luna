@@ -11,9 +11,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username
 
   has_many :memberships, foreign_key: :member_id
-  has_many :bodies, through: :memberships
+  has_many :groups, through: :memberships
 
-  has_many :created_bodies, class_name: 'Body', foreign_key: 'created_by_id'
+  has_many :created_groups, class_name: 'Group', foreign_key: 'created_by_id'
 
   validates_presence_of :username
 

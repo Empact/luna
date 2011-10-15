@@ -1,0 +1,24 @@
+%h1 Listing groups
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Creator
+    %th
+    %th
+
+  - @groups.each do |group|
+    %tr
+      %td= link_to group.name, group
+      %td= group.description
+      %td= render 'users/user', user: group.created_by
+
+      %td= link_to 'Edit', edit_group_path(group) if permitted_to?(:edit, group)
+      %td= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete if permitted_to?(:destroy, group)
+
+= paginate @groups
+
+%br
+
+= link_to 'New Group', new_group_path

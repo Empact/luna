@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111015213021) do
+ActiveRecord::Schema.define(:version => 20111015230750) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id",   :null => false
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20111015213021) do
     t.datetime "updated_at"
   end
 
-  create_table "bodies", :force => true do |t|
+  create_table "groups", :force => true do |t|
     t.string   "name",          :null => false
     t.string   "description"
     t.datetime "created_at"
@@ -30,30 +30,30 @@ ActiveRecord::Schema.define(:version => 20111015213021) do
     t.string   "slug",          :null => false
   end
 
-  add_index "bodies", ["name"], :name => "index_bodies_on_name", :unique => true
-  add_index "bodies", ["slug"], :name => "index_bodies_on_slug", :unique => true
+  add_index "groups", ["name"], :name => "index_bodies_on_name", :unique => true
+  add_index "groups", ["slug"], :name => "index_bodies_on_slug", :unique => true
 
   create_table "membership_requests", :force => true do |t|
     t.integer  "member_id",  :null => false
-    t.integer  "body_id",    :null => false
+    t.integer  "group_id",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "membership_requests", ["member_id", "body_id"], :name => "index_membership_requests_on_member_id_and_body_id", :unique => true
+  add_index "membership_requests", ["member_id", "group_id"], :name => "index_membership_requests_on_member_id_and_body_id", :unique => true
 
   create_table "memberships", :force => true do |t|
     t.integer  "member_id",     :null => false
-    t.integer  "body_id",       :null => false
+    t.integer  "group_id",      :null => false
     t.integer  "created_by_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "memberships", ["member_id", "body_id"], :name => "index_memberships_on_member_id_and_body_id", :unique => true
+  add_index "memberships", ["member_id", "group_id"], :name => "index_memberships_on_member_id_and_body_id", :unique => true
 
   create_table "questions", :force => true do |t|
-    t.integer  "body_id",       :null => false
+    t.integer  "group_id",      :null => false
     t.integer  "created_by_id", :null => false
     t.text     "text"
     t.datetime "created_at"
@@ -85,16 +85,16 @@ ActiveRecord::Schema.define(:version => 20111015213021) do
   add_foreign_key "answers", "questions", :name => "answers_question_id_fk"
   add_foreign_key "answers", "users", :name => "answers_created_by_id_fk", :column => "created_by_id"
 
-  add_foreign_key "bodies", "users", :name => "bodies_created_by_id_fk", :column => "created_by_id"
+  add_foreign_key "groups", "users", :name => "bodies_created_by_id_fk", :column => "created_by_id"
 
-  add_foreign_key "membership_requests", "bodies", :name => "membership_requests_body_id_fk"
+  add_foreign_key "membership_requests", "groups", :name => "membership_requests_body_id_fk"
   add_foreign_key "membership_requests", "users", :name => "membership_requests_member_id_fk", :column => "member_id"
 
-  add_foreign_key "memberships", "bodies", :name => "memberships_body_id_fk"
+  add_foreign_key "memberships", "groups", :name => "memberships_body_id_fk"
   add_foreign_key "memberships", "users", :name => "memberships_created_by_id_fk", :column => "created_by_id"
   add_foreign_key "memberships", "users", :name => "memberships_member_id_fk", :column => "member_id"
 
-  add_foreign_key "questions", "bodies", :name => "questions_body_id_fk"
+  add_foreign_key "questions", "groups", :name => "questions_body_id_fk"
   add_foreign_key "questions", "users", :name => "questions_created_by_id_fk", :column => "created_by_id"
 
 end

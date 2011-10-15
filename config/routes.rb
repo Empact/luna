@@ -1,10 +1,10 @@
 Luna::Application.routes.draw do
   devise_for :users
 
-  resources :bodies do
-    resources :memberships, only: [:index, :create, :destroy], controller: 'bodies/memberships'
-    resources :membership_requests, only: :create, controller: 'bodies/membership_requests'
-    resources :questions, only: [:new, :create, :show], controller: 'bodies/questions'
+  resources :groups do
+    resources :memberships, only: [:index, :create, :destroy], controller: 'groups/memberships'
+    resources :membership_requests, only: :create, controller: 'groups/membership_requests'
+    resources :questions, only: [:new, :create, :show], controller: 'groups/questions'
   end
   resources :users, only: :show
 

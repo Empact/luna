@@ -1,0 +1,7 @@
+%h1 What would you like to ask #{link_to @group.name, @group}?
+
+= form_for [@group, @question] do |f|
+  .field= f.text_area :text
+
+  = f.submit 'Pose Question'
+  

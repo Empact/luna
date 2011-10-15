@@ -1,0 +1,48 @@
+%h1= @group.name
+
+%p= @group.description
+
+%p
+  %b Creator:
+  = render 'users/user', user: @group.created_by
+
+- if permitted_to?(:edit, @group)
+  = link_to 'Edit', edit_group_path(@group)
+
+%h2 Members
+- if @members.present?
+  %ul
+    - @members.each do |member|
+      %li= render 'users/user', user: member
+
+  = paginate @members
+- else
+  %p None
+
+- if user_signed_in? && membership = @group.memberships.for(current_user)
+  = button_to 'Leave Group', group_membership_path(@group, membership), method: :delete
+- elsif permitted_to?(:edit, @group)
+  = button_to 'Join Group', group_memberships_path(@group, membership: {member_id: current_user.id})
+- elsif @group.membership_requests.for(current_user)
+  %p
+    Membership requested at
+    = current_user.created_at
+- else
+  = button_to 'Request Membership', group_membership_requests_path(@group)
+
+- if permitted_to?(:edit, @group)
+  = link_to 'Manage Members', group_memberships_path(@group)
+
+%h2 Questions
+- if @questions.present?
+  %ol
+    - @questions.each do |question|
+      %li= render 'questions/question', question: question
+
+  = paginate @questions
+
+- else
+  %p None
+
+- if permitted_to?(:create, @group.questions.build)
+  = link_to 'Raise a question', new_group_question_path(@group)

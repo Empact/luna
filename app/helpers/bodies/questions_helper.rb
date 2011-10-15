@@ -1,2 +1,0 @@
-module Bodies::QuestionsHelper
-end

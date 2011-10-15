@@ -1,0 +1,6 @@
+%h1= @question.text
+
+.details
+  Asked by #{render 'users/user', user: @question.created_by}
+  on #{@question.created_at}
+  to the members of #{render 'groups/group', group: @question.group}

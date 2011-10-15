@@ -1,7 +1,0 @@
-%h1 What would you like to ask #{link_to @body.name, @body}?
-
-= form_for [@body, @question] do |f|
-  .field= f.text_area :text
-
-  = f.submit 'Pose Question'
-  

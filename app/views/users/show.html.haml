@@ -1,22 +1,22 @@
 %h1= @user.username
 
-%h2 Bodies
+%h2 Groups
 
 %h3 Creator of:
 
-- if @created_bodies.present?
+- if @created_groups.present?
   %ul
-    - @created_bodies.each do |created_body|
-      %li= render 'bodies/body', body: created_body
+    - @created_groups.each do |created_group|
+      %li= render 'groups/group', group: created_group
 
 - else
   %p None
 
 %h3 Member of:
 
-- if @member_bodies.present?
+- if @member_groups.present?
   %ul
-    - @member_bodies.each do |member_body|
-      %li= render 'bodies/body', body: member_body
+    - @member_groups.each do |member_group|
+      %li= render 'groups/group', group: member_group
 - else
   %p None

@@ -1,11 +1,11 @@
-class CreateBodies < ActiveRecord::Migration
+class CreateGroups < ActiveRecord::Migration
   def change
-    create_table :bodies do |t|
+    create_table :groups do |t|
       t.string :name, null: false
       t.string :description
 
       t.timestamps
     end
-    add_index :bodies, :name, unique: true
+    add_index :groups, :name, unique: true
   end
 end

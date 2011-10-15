@@ -1,0 +1,26 @@
+%h1
+  Members of
+  = link_to @group.name, @group
+
+- if @memberships.present?
+  %ul
+    - @memberships.each do |membership|
+      %li
+        = render 'users/user', user: membership.member
+        = link_to 'Remove', group_membership_path(@group, membership), method: :delete
+
+  = paginate @memberships
+
+- else
+  %p There don't seem to be any members
+
+%h2
+  Add Members to
+  = link_to @group.name, @group
+
+- if @prospective_members.present?
+  = form_for [@group, @membership] do |f|
+    = f.collection_select :member_id, @prospective_members, :id, :username
+    = f.submit 'Add Member'
+- else
+  %p No prospective members available
