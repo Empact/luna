@@ -6,23 +6,29 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
 
+    = stylesheet_link_tag 'blueprint/screen.css', media: 'screen, projection'
+    = stylesheet_link_tag 'blueprint/print.css', media: 'print'
+    /[if lt IE 8]
+      = stylesheet_link_tag 'blueprint/ie.css', media: 'screen, projection'
+
   %body
-    %header
-      %h1= link_to 'Luna', root_path
+    %header#header
+      .container
+        %nav
+          #logo.left= link_to 'Luna', root_path
 
-      %nav= link_to 'Our Deliberative Bodies', bodies_path
+          %ol.right
+            %li= link_to 'Our Deliberative Bodies', bodies_path
+            - if user_signed_in?
+              %li= current_user.username
+              %li= link_to_unless_current 'Settings', edit_user_registration_path
+              %li= link_to 'Sign Out', destroy_user_session_path, method: :delete
+            - else
+              %li= link_to_unless_current 'Sign In', new_user_session_path
+              %li= link_to_unless_current 'Sign Up', new_user_registration_path
 
-      %nav
-        - if user_signed_in?
-          Welcome,
-          = current_user.username
-          = link_to_unless_current 'Settings', edit_user_registration_path
-          = link_to 'Sign Out', destroy_user_session_path, method: :delete
-        - else
-          = link_to_unless_current 'Sign In', new_user_session_path
-          = link_to_unless_current 'Sign Up', new_user_registration_path
+    .container
+      %p#notice= notice
+      %p#alert= alert
 
-    %p#notice= notice
-    %p#alert= alert
-
-    = yield
+      = yield
