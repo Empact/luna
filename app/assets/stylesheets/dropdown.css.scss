@@ -1,0 +1,117 @@
+.dropdown
+{
+
+  position: relative;
+
+  a {
+          float: left;
+          height: 25px;
+          padding: 0 25px;
+          color: #999;
+          font: bold 12px/25px Arial, Helvetica;
+          text-decoration: none;
+          text-shadow: 0 1px 0 #000;
+  }
+
+  &:hover > ul,
+  &:hover > ol {
+      display: block;
+  }
+
+  /* Sub-menu */
+
+  ul, ol
+  {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: none;
+      position: absolute;
+      top: 35px;
+      left: 0;
+      z-index: 99999;
+      background: #444;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+
+      a {
+          padding: 10px;
+          height: auto;
+          line-height: 1;
+          display: block;
+          white-space: nowrap;
+          float: none;
+          text-transform: none;
+
+          &:hover {
+              background: #0186ba;
+          }
+      }
+
+      li {
+          float: none;
+          margin: 0;
+          padding: 0;
+          display: block;
+          -moz-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+          -webkit-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+          box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+
+          &:first-child a
+          {
+              -moz-border-radius: 5px 5px 0 0;
+              border-radius: 5px 5px 0 0;
+
+              &:after {
+                content: '';
+                position: absolute;
+                left: 30px;
+                top: -8px;
+                width: 0;
+                height: 0;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-bottom: 8px solid #444;
+              }
+          }
+
+          &:last-child
+          {
+              -moz-box-shadow: none;
+              -webkit-box-shadow: none;
+              box-shadow: none;
+          }
+      }
+  }
+}
+
+*html .dropdown li a:hover /* IE6 */
+{
+        color: #fafafa;
+}
+
+*html .dropdown ul a /* IE6 */
+{
+        height: 10px;
+        width: 150px;
+}
+
+*:first-child+html .dropdown ul a /* IE7 */
+{
+        height: 10px;
+        width: 150px;
+}
+
+.dropdown ul li:first-child a:hover:after
+{
+    border-bottom-color: #04acec;
+}
+
+.dropdown ul li:last-child a
+{
+    -moz-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+}
+
+* html .dropdown             { zoom: 1; } /* IE6 */
+*:first-child+html .dropdown { zoom: 1; } /* IE7 */
